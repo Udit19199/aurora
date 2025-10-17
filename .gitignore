@@ -1,0 +1,84 @@
+# --------------------
+# ⚠️ Core Files/Folders
+# --------------------
+node_modules/
+.pnpm-store/
+.yarn/
+.yarnrc.yml
+.npmrc
+
+# --------------------
+# 📦 Build Outputs
+# --------------------
+dist/
+out/
+build/
+.next/
+.turbo/
+.vercel/
+.netlify/
+.storybook/
+
+# --------------------
+# ⚙️ Generated Files
+# --------------------
+*.tsbuildinfo
+.eslintcache
+*.d.ts.map
+packages/*/generated/
+
+# --------------------
+# 🔑 Environment Variables & Secrets
+# --------------------
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --------------------
+# 🧪 Testing
+# --------------------
+coverage/
+*.lcov
+
+# --------------------
+# 📜 Logs & Debugging
+# --------------------
+npm-debug.log*
+pnpm-debug.log*
+*.log
+*.pid
+
+# --------------------
+# 💻 OS / IDE Specific
+# --------------------
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# --------------------
+# 🧱 Temporary / Cache Files
+# --------------------
+.tmp/
+.cache/
+
+# --------------------
+# 🧰 Local Data
+# --------------------
+*.sqlite
+*.db
+uploads/
+storage/
+
+# --------------------
+# 📝 Local Development Files
+# --------------------
+PLAN.md
+PHASE-0.md
+PHASE-1.md
+Phase-2.md
+prompt.txt
+

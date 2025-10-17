@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+        provider = "postgresql"
+        url      = env("DATABASE_URL")
+}
+
+generator client {
+        provider = "prisma-client-js"
+        output   = "../generated/client"
+}
+
+model User {
+        id            String    @id @default(uuid())
+        name          String?
+        email         String    @unique
+        password      String
+        emailVerified DateTime?
+        goals         Goal[]
+        createdAt     DateTime  @default(now())
+}
+
+model Goal {
+        id          String    @id @default(uuid())
+        title       String
+        description String?
+        deadline    DateTime?
+        user        User      @relation(fields: [userId], references: [id])
+        userId      String
+        tasks       Task[]
+        status      Status    @default(PENDING)
+        createdAt   DateTime  @default(now())
+        deletedAt   DateTime? 
+}
+
+model Task {
+        id          String    @id @default(uuid())
+        title       String
+        description String?
+        dueDate     DateTime?
+        goals       Goal      @relation(fields: [goalId], references: [id])
+        goalId      String
+        status      Status    @default(PENDING)
+        createdAt   DateTime  @default(now())
+}
+
+enum Status {
+        PENDING
+        IN_PROGRESS
+        COMPLETED
+}
