@@ -96,12 +96,7 @@ authRouter.post("/signin", async (req, res) => {
         });
     }
 
-    if (!process.env.JWT_SECRET) {
-        return res.status(500).json({
-            message: "An internal server error occurred.",
-        });
-    }
-    const token = jwt.sign({ userId: currentUser.id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: currentUser.id }, process.env.JWT_SECRET!);
 
     res.status(200).json({
         message: "Sign in successful",

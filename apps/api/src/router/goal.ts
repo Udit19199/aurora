@@ -89,4 +89,20 @@ goalRouter.get("/", async (req, res) => {
     }
 })
 
+
+
+goalRouter.put('/:goalId', async (req, res) => {
+
+    const goal = await prisma.goal.findUnique({
+        where: {
+            userId: req.userId,
+            id: req.params.goalId
+        }
+    })
+
+})
+
+
+
+
 export default goalRouter;
