@@ -3,8 +3,6 @@
 # --------------------
 node_modules/
 .pnpm-store/
-.yarn/
-.yarnrc.yml
 .npmrc
 
 # --------------------
@@ -68,7 +66,6 @@ pnpm-debug.log*
 # --------------------
 # 🧰 Local Data
 # --------------------
-*.sqlite
 *.db
 uploads/
 storage/
@@ -76,9 +73,9 @@ storage/
 # --------------------
 # 📝 Local Development Files
 # --------------------
+GEMINI.md
 PLAN.md
 PHASE-0.md
 PHASE-1.md
 Phase-2.md
 prompt.txt
-

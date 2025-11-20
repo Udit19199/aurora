@@ -5,7 +5,7 @@ import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
 const authRouter: Router = Router();
-const saltRounds = process.env.BYCRYPT_SALT_ROUNDS!;
+const saltRounds = parseInt(process.env.BYCRYPT_SALT_ROUNDS!, 10);
 
 authRouter.post("/signup", async (req, res) => {
     const inputBody: UserInput = req.body;
@@ -81,7 +81,7 @@ authRouter.post("/signin", async (req, res) => {
     }
 
     if (!currentUser) {
-        return res.status(411).json({
+        return res.status(404).json({
             message: "User not found",
         });
     }

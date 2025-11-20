@@ -92,14 +92,41 @@ goalRouter.get("/", async (req, res) => {
 
 
 goalRouter.put('/:goalId', async (req, res) => {
+    // fetch the goal, if it exists update it with the new info else tell the user it doesn't exist
+    const result = UpdateGoalSchema.safeParse(req.body)
+    if (!req.userId || !req.params.goalId || !result.success) {
+        return res.status(400).json({
+            "message": "Incorrect inputs"
+        })
+    }
 
-    const goal = await prisma.goal.findUnique({
+
+    let goal = await prisma.goal.findUnique({
         where: {
             userId: req.userId,
             id: req.params.goalId
         }
     })
 
+    if (!goal) {
+        return res.status(404).json({
+            "message": "Goal not found"
+        })
+    }
+
+    try {
+        let updatedGoal = await prisma.goal.update({
+            where: {
+                userId: req.userId,
+                id: req.params.goalId
+            }, data: result.data
+        })
+        return res.status(200).json(updatedGoal)
+    } catch (e) {
+        return res.status(500).json({
+            "message": "Internal Server Error"
+        })
+    }
 })
 
 
